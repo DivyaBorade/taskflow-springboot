@@ -1,9 +1,6 @@
 package taskflow.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import taskflow.model.AppInfo;
 import taskflow.model.Task;
 import taskflow.repository.TaskRepository;
@@ -48,4 +45,11 @@ public class HelloController {
         return taskRepository.save(task);
     }
 
+    @DeleteMapping("/tasks/{id}")
+    public String deleteTask(@PathVariable Integer id) {
+
+        taskRepository.deleteById(id);
+
+        return "Task deleted successfully";
+    }
 }
