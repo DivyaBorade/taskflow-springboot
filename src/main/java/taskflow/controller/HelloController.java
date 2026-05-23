@@ -4,11 +4,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import taskflow.model.AppInfo;
 import taskflow.model.Task;
+import taskflow.repository.TaskRepository;
 
 import java.util.List;
 
 @RestController
 public class HelloController {
+
+    private final TaskRepository taskRepository;
+
+    public HelloController(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     @GetMapping("/hello")
     public String hello(){
@@ -31,10 +38,6 @@ public class HelloController {
 
     @GetMapping("/tasks")
     public List<Task> getTasks() {
-        return List.of(
-                new Task(1, "Learn Spring Boot", false),
-                new Task(2, "Build TaskFlow", true),
-                new Task(3, "Practice APIs", false)
-        );
+        return taskRepository.findAll();
     }
 }
