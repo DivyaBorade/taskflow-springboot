@@ -1,6 +1,8 @@
 package taskflow.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import taskflow.model.AppInfo;
 import taskflow.model.Task;
@@ -40,4 +42,10 @@ public class HelloController {
     public List<Task> getTasks() {
         return taskRepository.findAll();
     }
+
+    @PostMapping("/tasks")
+    public Task createTask(@RequestBody Task task) {
+        return taskRepository.save(task);
+    }
+
 }
