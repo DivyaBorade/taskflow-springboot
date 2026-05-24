@@ -52,4 +52,16 @@ public class HelloController {
 
         return "Task deleted successfully";
     }
+
+    @PutMapping("/tasks/{id}")
+    public Task updateTask(@PathVariable Integer id,
+                           @RequestBody Task updatedTask) {
+        updatedTask = new Task(
+                id,
+                updatedTask.getTitle(),
+                updatedTask.isCompleted()
+        );
+
+        return taskRepository.save(updatedTask);
+    }
 }

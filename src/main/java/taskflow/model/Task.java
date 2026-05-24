@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Task {
     @Id
-    private int id;
+    private Integer id;
 
     private String title;
     private boolean completed;
@@ -15,13 +15,13 @@ public class Task {
 
     }
 
-    public Task(int id, String title, boolean completed) {
+    public Task(Integer id, String title, boolean completed) {
         this.id = id;
         this.title = title;
         this.completed = completed;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
